@@ -1,3 +1,10 @@
+# App-specific
+config.json
+
+# System
+.DS_Store
+Thumbs.db
+
 # Logs
 logs
 *.log
