@@ -1,0 +1,34 @@
+{
+  "name": "selfbot",
+  "version": "1.0.0",
+  "description": "Discord selfbot using Discord.JS",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sceptero/selfbot.git"
+  },
+  "keywords": [
+    "discord",
+    "selfbot",
+    "discord.js",
+    "node",
+    "js",
+    "javascript"
+  ],
+  "author": "Sceptero",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sceptero/selfbot/issues"
+  },
+  "homepage": "https://github.com/Sceptero/selfbot#readme",
+  "dependencies": {
+    "discord.js": "github:hydrabolt/discord.js#indev-prism",
+    "moment": "^2.15.1",
+    "performance-now": ">=0.2.0",
+    "uws": "^0.11.1",
+    "vm2": "^3.1.0"
+  }
+}
