@@ -1,4 +1,4 @@
-// measure the ping to server
+// measure the ping to server | .ping
 "use strict";
 
 module.exports = {

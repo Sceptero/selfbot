@@ -1,8 +1,7 @@
-// eval js code in sandboxed vm | !eval js_code
+// eval js code in sandboxed vm | .x js_code
 "use strict";
 
 const {VM} = require('vm2');
-const Discord = require("discord.js");
 let vm = new VM();
 
 const ZERO_WIDTH_SPACE = String.fromCharCode(8203);
@@ -28,7 +27,7 @@ module.exports = {
         }
 
         try {
-            var evaled = vm.run(code);
+            let evaled = vm.run(code);
             if (typeof evaled !== 'string')
                 evaled = require('util').inspect(evaled);
             msgEdit(msg, code, evaled);
@@ -49,7 +48,7 @@ function clean(text) {
 }
 
 let embedCode = {
-    color: 15658734,
+    color: 0xEEEEEE,
     fields: [
         {
             name: "Input",
@@ -67,7 +66,10 @@ let embedCode = {
 function msgEdit(msg, pre, post) {
     embedCode.fields[0].value = "```js\n" + clean(pre) + "\n```";
     embedCode.fields[1].value = "```js\n" + clean(post) + "\n```";
-    msg.edit("", { embed: embedCode });
+    msg.edit("", { embed: embedCode }).catch((error) => {
+        console.log(error);
+        msg.delete();
+    });
 }
 
 // function msgEdit(msg, pre, post) {

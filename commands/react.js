@@ -1,4 +1,4 @@
-// !react message_id text | text has to be made of unique characters, 1-20 chars
+// add reactions to message | .react message_id text | text has to be made of unique characters, 1-20 chars
 "use strict";
 
 const emojis = ["🇦", "🇧", "🇨", "🇩", "🇪", "🇫", "🇬", "🇭", "🇮", "🇯", "🇰", "🇱", "🇲", "🇳", "🇴", "🇵", "🇶", "🇷", "🇸", "🇹", "🇺", "🇻", "🇼", "🇽", "🇾", "🇿"];

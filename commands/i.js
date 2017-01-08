@@ -1,4 +1,4 @@
-// embed image | !i image_url ?title
+// embed image | .i image_url ?title
 "use strict";
 
 const Discord = require("discord.js");
@@ -17,4 +17,4 @@ module.exports = {
             msg.delete();
         });
     }
-}
+};

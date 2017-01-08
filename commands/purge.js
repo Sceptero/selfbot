@@ -1,4 +1,4 @@
-// purge self messages | !purge ?msg_count=10 | count < 100
+// purge self messages | .purge ?msg_count=10 | count < 100
 "use strict";
 
 module.exports = {
