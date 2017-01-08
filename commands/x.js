@@ -7,32 +7,35 @@ let vm = new VM();
 
 const ZERO_WIDTH_SPACE = String.fromCharCode(8203);
 
-exports.run = function(bot, msg, args) {
+module.exports = {
+    trigger: "x",
+    action: function (bot, msg, args) {
 
-    let code = args.join(" ");
-    let split = code.split("\n");
-    code = [];
+        let code = args.join(" ");
+        let split = code.split("\n");
+        code = [];
 
-    for (let x of split) {
-        if (!x.startsWith("```")) code.push(x);
-    }
+        for (let x of split) {
+            if (!x.startsWith("```")) code.push(x);
+        }
 
-    code = code.join("\n").trim();
+        code = code.join("\n").trim();
 
-    if (code == "new.") {
-        vm = new VM();
-        msg.delete();
-        return;
-    }
+        if (code == "new.") {
+            vm = new VM();
+            msg.delete();
+            return;
+        }
 
-    try {
-        var evaled = vm.run(code);
-        if (typeof evaled !== 'string')
-            evaled = require('util').inspect(evaled);
-        msgEdit(msg, code, evaled);
-    }
-    catch (error) {
-        msgEdit(msg, code,error);
+        try {
+            var evaled = vm.run(code);
+            if (typeof evaled !== 'string')
+                evaled = require('util').inspect(evaled);
+            msgEdit(msg, code, evaled);
+        }
+        catch (error) {
+            msgEdit(msg, code, error);
+        }
     }
 };
 
