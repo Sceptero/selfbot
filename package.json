@@ -26,9 +26,9 @@
   "homepage": "https://github.com/Sceptero/selfbot#readme",
   "dependencies": {
     "discord.js": "github:hydrabolt/discord.js#indev-prism",
-    "moment": "^2.15.1",
-    "performance-now": ">=0.2.0",
-    "uws": "^0.11.1",
+    "erlpack": "github:hammerandchisel/erlpack",
+    "superagent": "^3.3.1",
+    "uws": "^0.12.0",
     "vm2": "^3.1.0"
   }
 }

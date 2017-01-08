@@ -1,48 +1,47 @@
-'use strict';
+// Application entry-point
+"use strict";
+
 const Discord = require("discord.js");
-const bot = new Discord.Client();
-const config = require('./config.json');
 
-bot.config = config;
+const MessagesHandler = require("./modules/MessagesHandler");
 
-bot.on('ready', () => {
-  console.log(`Simple Selfbot: Ready to spy on ${bot.users.size} users, in ${bot.channels.size} channels of ${bot.guilds.size} servers.`);
-  delete bot.user.email;
-  delete bot.user.verified;
-  console.log("=> Ready");
-});
 
-bot.on('message', msg => {
-  if(msg.isMentioned(bot.user.id)) {
-    console.log(`[MENTION] ${msg.author.username} (${msg.author.id}) on ${msg.guild.name}/${msg.channel.name}:\n${msg.content}`);
-  }
+class App {
+    constructor() {
+        this.bot = new Discord.Client();
+        this.bot.config = this.loadConfig();
+        this.startLogging();
 
-  if(msg.author.id !== bot.user.id) return;
-  if(!msg.content.startsWith(config.prefix)) return;
-  
-  const args = msg.content.split(" ");
-  const command = args.shift().slice(config.prefix.length);
-  
-  try {
-    let cmdFile = require("./commands/" + command);
-    cmdFile.run(bot, msg, args);
-  } catch(e) {
-    msg.delete();
-  }
-});
+        this.messagesHandler = new MessagesHandler(this.bot);
 
-bot.on('error', console.error);
-bot.on('warn', console.warn);
-bot.on('disconnect', console.warn);
+        this.bot.login(this.bot.config.token);
+        this.bot.password = this.bot.config.password;
+    }
 
-bot.login(config.botToken);
-bot.password = config.password;
+    loadConfig() {
+        let config;
+        try {
+            config = require("./config.json");
+            return config;
+        } catch (error) {
+            console.error("Couldn't load config.json");
+            process.exit(1);
+        }
+    }
 
-process.on('uncaughtException', (err) => {
-  let errorMsg = err.stack.replace(new RegExp(`${__dirname}\/`, 'g'), './');
-  console.error(errorMsg);
-});
+    startLogging() {
+        this.bot.on("ready", () => {
+            console.log(`Simple Selfbot: Ready to spy on ${this.bot.users.size} users, in ${this.bot.channels.size} channels of ${this.bot.guilds.size} servers.`);
+            delete this.bot.user.email;
+            delete this.bot.user.verified;
+        });
 
-process.on("unhandledRejection", err => {
-  console.error("Uncaught Promise Error: \n" + err.stack);
-});
+        this.bot.on("error", console.error);
+        this.bot.on("warn", console.warn);
+        this.bot.on("disconnect", console.warn);
+        process.on("uncaughtException", console.error);
+        process.on("unhandledRejection", console.error);
+    }
+}
+
+let app = new App();
