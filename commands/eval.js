@@ -1,4 +1,4 @@
-// eval js code without VM (not safe, don't use on server bots) | !eval js_code
+// eval js code without VM (not safe, don't use on server bots) | .eval js_code
 "use strict";
 
 const Discord = require("discord.js");

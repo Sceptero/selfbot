@@ -1,4 +1,4 @@
-// type text with emojis, 1 - 27 characters, a-Z and spaces allowed | !text message
+// type text with emojis, 1 - 27 characters, a-Z and spaces allowed | .text message
 "use strict";
 
 // A -> 65, 🇦 -> 127462
