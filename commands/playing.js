@@ -1,5 +1,5 @@
 // set status | .playing status_msg
-// NOT WERKING
+// NOT WERKING YET
 "use strict";
 
 module.exports = {

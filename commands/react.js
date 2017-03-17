@@ -1,7 +1,8 @@
 // add reactions to message | .react message_id text | text has to be made of unique characters, 1-20 chars
 "use strict";
 
-const emojis = ["🇦", "🇧", "🇨", "🇩", "🇪", "🇫", "🇬", "🇭", "🇮", "🇯", "🇰", "🇱", "🇲", "🇳", "🇴", "🇵", "🇶", "🇷", "🇸", "🇹", "🇺", "🇻", "🇼", "🇽", "🇾", "🇿"];
+// A -> 65, 🇦 -> 127462
+const TEXT_TO_EMOJI_DISTANCE = 127397;
 
 module.exports = {
     trigger: "react",
@@ -22,10 +23,10 @@ module.exports = {
 
                 if (text == null) return;
 
-                let promise = message.react(emojis[text.charCodeAt(0) - 65]);
+                let promise = message.react(String.fromCodePoint(x.codePointAt(0) + TEXT_TO_EMOJI_DISTANCE));
 
                 for (let i = 1; i < text.length; i++)
-                    promise = promise.then(() => message.react(emojis[text.charCodeAt(i) - 65]));
+                    promise = promise.then(() => message.react(String.fromCodePoint(x.codePointAt(0) + TEXT_TO_EMOJI_DISTANCE)));
             }
         });
 
