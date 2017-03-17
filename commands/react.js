@@ -23,10 +23,10 @@ module.exports = {
 
                 if (text == null) return;
 
-                let promise = message.react(String.fromCodePoint(x.codePointAt(0) + TEXT_TO_EMOJI_DISTANCE));
+                let promise = message.react(String.fromCodePoint(text.codePointAt(0) + TEXT_TO_EMOJI_DISTANCE));
 
                 for (let i = 1; i < text.length; i++)
-                    promise = promise.then(() => message.react(String.fromCodePoint(x.codePointAt(0) + TEXT_TO_EMOJI_DISTANCE)));
+                    promise = promise.then(() => message.react(String.fromCodePoint(text[i].codePointAt(0) + TEXT_TO_EMOJI_DISTANCE)));
             }
         });
 
