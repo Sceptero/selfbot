@@ -8,7 +8,7 @@ module.exports = {
         msg.delete();
 
         console.log(`\nChecking for users with mutual guilds on server: ${msg.guild.name}`)
-        msg.channel.members.forEach(x => {
+        msg.guild.members.forEach(x => {
 	        if (!x.user.bot && x.id !== msg.author.id) {
 		        x.user.fetchProfile().then(y => {
 			        if (y.mutualGuilds.array().length > 1) {
