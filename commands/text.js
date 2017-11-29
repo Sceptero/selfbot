@@ -17,7 +17,7 @@ module.exports = {
         text = text.toUpperCase();
         text = text.split('').map(x => x == " " ? "     " : String.fromCodePoint(x.codePointAt(0) + TEXT_TO_EMOJI_DISTANCE)).join(' ');
         msg.delete();
-        msg.channel.sendMessage(text);
+        msg.channel.send(text);
     }
 };
 

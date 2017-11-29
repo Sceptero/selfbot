@@ -49,6 +49,7 @@ module.exports = class MessagesHandler {
                 }
             if (!executed) throw "Command not found.";
         } catch (error) {
+            console.error(error);
             msg.delete();
         }
     }

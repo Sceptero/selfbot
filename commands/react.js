@@ -11,7 +11,7 @@ module.exports = {
         let text = args[1];
         if (text) text = text.toUpperCase();
 
-        msg.channel.fetchMessages({ limit: 20 }).then((messages) => {
+        msg.channel.messages.fetch({ limit: 20 }).then((messages) => {
             let message = messages.get(msgId);
 
             if (message != null && (!text || validateText(text))) {
