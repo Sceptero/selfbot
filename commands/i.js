@@ -6,7 +6,7 @@ const Discord = require("discord.js");
 module.exports = {
     trigger: "i",
     action: function (bot, msg, args) {
-        let richEmbed = new Discord.RichEmbed()
+        let richEmbed = new Discord.MessageEmbed()
             .setColor(0xFFFFFF)
             .setImage(args[0]);
 
